@@ -26,7 +26,7 @@
         </section>
 
         <section class="blog-posts">
-            <article class="post-card">
+            <article class="post-card" data-date="2025-01-15">
                 <div class="post-meta">
                     <span class="date">January 15, 2025</span>
                     <span class="category">Alignment</span>
@@ -36,7 +36,7 @@
                 <a href="posts/understanding-alignment.html" class="read-more">Read more →</a>
             </article>
 
-            <article class="post-card">
+            <article class="post-card" data-date="2025-01-10">
                 <div class="post-meta">
                     <span class="date">January 10, 2025</span>
                     <span class="category">Robustness</span>
@@ -46,7 +46,7 @@
                 <a href="posts/robustness-challenges.html" class="read-more">Read more →</a>
             </article>
 
-            <article class="post-card">
+            <article class="post-card" data-date="2025-01-05">
                 <div class="post-meta">
                     <span class="date">January 5, 2025</span>
                     <span class="category">Philosophy</span>
@@ -56,6 +56,27 @@
                 <a href="posts/why-ai-safety-matters.html" class="read-more">Read more →</a>
             </article>
         </section>
+
+        <script>
+            // Sort posts by date (newest first)
+            document.addEventListener('DOMContentLoaded', function() {
+                const postsSection = document.querySelector('.blog-posts');
+                const posts = Array.from(postsSection.querySelectorAll('.post-card'));
+                
+                // Sort posts by data-date attribute (descending order - newest first)
+                posts.sort((a, b) => {
+                    const dateA = new Date(a.getAttribute('data-date'));
+                    const dateB = new Date(b.getAttribute('data-date'));
+                    return dateB - dateA; // Descending order (newest first)
+                });
+                
+                // Remove all posts from DOM
+                posts.forEach(post => post.remove());
+                
+                // Re-append sorted posts
+                posts.forEach(post => postsSection.appendChild(post));
+            });
+        </script>
     </main>
 
     <footer>
